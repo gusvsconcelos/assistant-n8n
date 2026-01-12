@@ -1,11 +1,9 @@
 # n8n Self-Hosted Virtual Assistant (MVP)
 
----
 This project is an **MVP of a fully self-hosted virtual assistant**, built with **n8n** and powered by **LLaMA 3.2:3b**, running locally via **Ollama** inside Docker containers.
 
 The main goal is to provide a solid foundation for integrating an AI assistant into real services (such as WhatsApp, Telegram, etc.), while maintaining full control over infrastructure and data.
 
----
 ## Requirements
 
 Before getting started, make sure you have the following installed:
@@ -13,7 +11,6 @@ Before getting started, make sure you have the following installed:
 * **Docker**
 * **Docker Compose**
 
----
 ## Starting the environment
 
 From the project root, run:
@@ -28,7 +25,6 @@ This command will:
 * Start the **PostgreSQL** container
 * Start the **Ollama** container
 
----
 ## Downloading the Ollama model
 
 Once all containers are running, pull the language model:
@@ -39,7 +35,6 @@ docker compose exec ollama ollama pull llama3.2:3b
 
 This may take a few minutes depending on your internet connection.
 
----
 ## Accessing n8n
 
 After everything is up, open your browser and go to:
@@ -58,10 +53,9 @@ If, for any reason, it asks you to log in directly, use:
 * **Username:** `admin`
 * **Password:** `admin`
 
----
 ## Connecting PostgreSQL to n8n
 
-I recommend configuring the database immediately.
+I recommend configuring the database before creating any workflows.
 
 1. Go to **Credentials**
 
@@ -79,7 +73,6 @@ I recommend configuring the database immediately.
 5. Save and test the connection
    If it returns success, you are ready to proceed.
 
----
 ## Importing the workflows
 
 Inside the `workflows/` folder, there are **three JSON files**.
@@ -90,7 +83,6 @@ For each one:
 2. Use **Import from file**
 3. Import the corresponding JSON file
 
----
 ## Initializing the database
 
 After importing all workflows, you **must** run the following workflow:
@@ -101,7 +93,6 @@ setup_database
 
 This workflow creates the required database structures used by the assistant.
 
----
 ## Interacting with the assistant
 
 You can interact with the assistant via **curl** using the exposed n8n webhook:
@@ -115,7 +106,6 @@ curl -X POST http://localhost:5678/webhook-test/assistent \
 * `message`: the user input message
 * `userId`: a unique user identifier (used for context handling)
 
----
 ## Roadmap / Next steps
 
 * Add a simple **frontend UI**
