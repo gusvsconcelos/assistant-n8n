@@ -1,0 +1,63 @@
+{
+  "name": "setup_database",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "11d6dcb6-b69d-48fd-874e-375a61a1ef87",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "CREATE TABLE IF NOT EXISTS conversation_history (\n  id SERIAL PRIMARY KEY,\n  user_id TEXT NOT NULL,\n  role TEXT NOT NULL,\n  message TEXT NOT NULL,\n  timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP\n);\n\nCREATE INDEX IF NOT EXISTS idx_user_id ON conversation_history(user_id);",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        208,
+        0
+      ],
+      "id": "c22da92c-8e36-4e8d-9b74-8c91856886f8",
+      "name": "Create History",
+      "credentials": {
+        "postgres": {
+          "id": "yR1ECYKPZjeL8xPm",
+          "name": "Postgres account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Create History",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "availableInMCP": false
+  },
+  "versionId": "6f8ddd0a-da79-4328-9f0a-a9149440bb9d",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "37217154d55df78e34953638b494ff7c3ce3fd19b9c6fe137797eccd771f2d21"
+  },
+  "id": "LW_sfmwqxv_TjcT7ZZAPK",
+  "tags": []
+}
