@@ -106,7 +106,7 @@ curl -X POST http://localhost:5678/webhook-test/assistent \
 * `message`: the user input message
 * `userId`: a unique user identifier (used for context handling)
 
-## Roadmap / Next steps
+## Next steps
 
 * Add a simple **frontend UI**
 * Integrate with real services such as:
